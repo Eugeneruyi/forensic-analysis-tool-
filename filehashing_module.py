@@ -26,7 +26,7 @@ def calculate_hash(file_path, algorithm='sha256'):
 @staticmethod
 def verify_file_intergrity(file_path, known_hash):
     """
-    compares a file's current hash witha previously recorded hash to verify it's integrity.
+    compares a file's current hash with a previously recorded hash to verify it's integrity.
     Real life scenario: you collected "malware.exe" on sept 1st with hash "abc123" and on Dec 1st you hash it again if hash matches it has'nt be modified but if it fails someone has tempered with it.
     """
     current_hash = FileHasher.calculate_hash(file_path)
@@ -37,8 +37,8 @@ def verify_file_intergrity(file_path, known_hash):
 if __name__== "__main__":
     # Let's create a test file and calculate its hash
     test_file = "/tmp/test_evidence.txt"
-    with open(test_file, 'w') as f:
-        f.write("This is sensitive evidences")
+    with open(test_file, 'w') as f: # Create a test file
+        f.write("This is sensitive evidences") 
 
     # Hash it
     hash1 = FileHasher.calculate_hash(test_file)
