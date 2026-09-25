@@ -5,6 +5,7 @@
 # Pattern changes(normal 9-5 to suddenly)
 
 import datetime
+from json import scanner
 
 class AccessPatternAnalyzer:
     """
@@ -43,7 +44,7 @@ def analyze_access_patterns(evidence_collection):
         if entry['file_size_mb'] > 10: # large file
             analysis['suspicious_patterns'].append({
                 'file': entry['file_path'],
-                "reason": f'Large file({entry["file_size_mb"]} MB)' modified at {hour}:00',
+                "reason": f'Large file({entry["file_size_mb"]} MB) modified at {hour}:00',                
                 'severity': 'HIGH'
             })
             
@@ -53,3 +54,5 @@ def analyze_access_patterns(evidence_collection):
 if __name__ == "__main__":
     print("\n=== ACCESS PATTERN ANALYSIS ===")
     patterns = AccessPatternAnalyzer.analyze_access_patterns(scanner.evidence_collection)
+    print(f"Access by hour: {patterns['by_hour']}")
+    print(f"\nSuspicious patterns found {len(patterns['suspicious_patterns'])}")
